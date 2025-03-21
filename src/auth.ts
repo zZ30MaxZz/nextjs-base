@@ -28,13 +28,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                     const result = await loginHandler(authLogisn);
 
-                    if (!result || result.code !== '200') {
+                    if (!result || result.code !== 200) {
                         console.error("Login failed:", result?.message || "No response");
                         return null;
                     }
 
                     const data = result as Wrapper<LoginResponse>;
 
+                    if (!data.data) {
+                        console.error("Login failed:", result?.message || "No response");
+                        return null;
+                    }
                     return {
                         id: data.data.username,
                         email: data.data.username,

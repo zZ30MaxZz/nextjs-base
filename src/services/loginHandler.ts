@@ -32,7 +32,7 @@ export default async function loginHandler(request: RequestLogin) {
             if (response.status === 200 && response.data) {
                 loginResponse = response.data as Wrapper<LoginResponse>;
 
-                loginResponse.code = response.status.toString();
+                loginResponse.code = response.status;
 
                 return loginResponse;
             } else {
