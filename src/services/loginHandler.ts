@@ -3,11 +3,11 @@ import { REWARDS_LOGIN } from ".";
 import axios, { AxiosError } from "axios";
 import { Wrapper } from "@/interfaces/wrapper.interface";
 
-const BASE_PUBLIC_URL = process.env.BASE_PUBLIC_URL || '';
+const NEXT_PUBLIC_BASE_PUBLIC_URL = process.env.NEXT_PUBLIC_BASE_PUBLIC_URL || '';
 
 export default async function loginHandler(request: RequestLogin) {
     try {
-        const url = `${BASE_PUBLIC_URL}${REWARDS_LOGIN}`;
+        const url = `${NEXT_PUBLIC_BASE_PUBLIC_URL}${REWARDS_LOGIN}`;
 
         let loginResponse: Wrapper<LoginResponse> | null = null;
 

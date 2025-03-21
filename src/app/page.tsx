@@ -1,8 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -14,6 +17,9 @@ export default function Home() {
           height={38}
           priority
         />
+        <div>
+          {session && session.user.name}
+        </div>
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
@@ -104,6 +110,19 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <Link
+          href="/cards"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Cards →
+        </Link>
       </footer>
     </div>
   );

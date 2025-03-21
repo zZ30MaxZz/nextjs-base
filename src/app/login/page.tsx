@@ -1,11 +1,11 @@
 "use client"
 import { login } from "@/lib/actions"
 import { useState } from "react"
-// import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
     const [error, setError] = useState<string>("")
-    // const router = useRouter()
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -20,6 +20,9 @@ export default function LoginPage() {
 
             if (!result.success) {
                 setError(result.error || "Login failed")
+            }
+            else{
+                router.push("/")
             }
         } catch {
             setError("An unexpected error occurred")
