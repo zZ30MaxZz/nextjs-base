@@ -1,0 +1,1 @@
+export const REWARDS_LOGIN = "/v1/auth/signin"
