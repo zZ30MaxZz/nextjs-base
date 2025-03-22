@@ -19,18 +19,31 @@ export const useCards = <T>(
     });
     const fetchedRef = useRef(false);
 
+    const fetchCards = async () => {
+        if (!api || !isAuthenticated) return;
+
+        setState(prev => ({ ...prev, isLoading: true, error: null }));
+        try {
+            const response = await api.get(url);
+            setState({ data: response.data.data, isLoading: false, error: null });
+        } catch {
+            setState(prev => ({ ...prev, error: "Failed to fetch data", isLoading: false }));
+        }
+    };
+
     useEffect(() => {
         if (!api || !isAuthenticated || fetchedRef.current) return;
 
         fetchedRef.current = true;
-        api.get(url)
-            .then(response => setState({ data: response.data.data, isLoading: false, error: null }))
-            .catch(() => setState(prev => ({ ...prev, error: "Failed to fetch data", isLoading: false })));
+        fetchCards();
 
         return () => {
             fetchedRef.current = false;
         };
     }, [api, url, isAuthenticated]);
 
-    return state;
+    return {
+        ...state,
+        getAllCards: fetchCards
+    };
 };
