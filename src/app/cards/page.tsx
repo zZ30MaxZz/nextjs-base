@@ -7,6 +7,7 @@ import { useCards } from "@/utils/Cards/useCards";
 import { useCardDelete } from "@/utils/Cards/useCardDelete";
 import { useState } from "react";
 import { useCardRestore } from "@/utils/Cards/useCardRestore";
+import { useCardPost } from "@/utils/Cards/useCardPost";
 
 export default function CardsPage() {
     const { data: session, status } = useSession();
@@ -21,6 +22,7 @@ export default function CardsPage() {
 
     const { deleteCard } = useCardDelete(api, status === 'authenticated');
     const { restoreCard } = useCardRestore(api, status === 'authenticated');
+    const { registerCard } = useCardPost(api, status === 'authenticated');
 
     const handleDelete = async (cardId: string) => {
         const success = await deleteCard(cardId);
@@ -41,6 +43,20 @@ export default function CardsPage() {
             await getAllCards();
 
             setDeletedId(null);
+        }
+    };
+
+    const handleRegister = async () => {
+        const success = await registerCard(
+            {
+                cardNumber: "6128368018234596",
+                pin: "39600883",
+                isPrimary: true
+            }
+        );
+
+        if (success) {
+            await getAllCards();
         }
     };
 
@@ -67,6 +83,7 @@ export default function CardsPage() {
             {deletedId &&
                 <button onClick={() => handleRestore(deletedId)}>Restore</button >
             }
+            <button onClick={() => handleRegister()}>Register</button >
         </div>
     );
 }
