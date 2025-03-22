@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AxiosInstance } from 'axios';
 import { REWARDS_CARD_REGISTER } from '@/services';
-import { CardCreate } from '../interface/cardCreate.interface';
+import { CardCreate } from '../../interfaces/cardCreate.interface';
 
 interface PostCardState {
     isLoading: boolean;

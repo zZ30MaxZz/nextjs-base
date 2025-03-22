@@ -2,7 +2,7 @@
 import { auth, signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
-export async function login(username: string, password: string) {
+export async function loginNextAuth(username: string, password: string) {
     try {
         await signIn("credentials", {
             username,
@@ -10,7 +10,7 @@ export async function login(username: string, password: string) {
             redirect: false,
         });
 
-        const session = await auth(); // Obtiene la sesión actualizada
+        const session = await auth();
 
         if (!session) {
             return { success: false, error: "Could not retrieve session" };

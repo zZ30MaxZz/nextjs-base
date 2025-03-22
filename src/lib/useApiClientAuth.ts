@@ -8,7 +8,7 @@ interface AuthApiProps {
     status: string;
 }
 
-const useAuthApi = ({ session, status }: AuthApiProps) => {
+const useApiClientAuth = ({ session, status }: AuthApiProps) => {
     const interceptorRef = useRef<number | null>(null);
 
     useEffect(() => {
@@ -39,4 +39,4 @@ const useAuthApi = ({ session, status }: AuthApiProps) => {
     return axiosBase;
 };
 
-export default useAuthApi;
+export default useApiClientAuth;

@@ -1,13 +1,13 @@
 "use client"
-import { Card } from "@/utils/interface/card.interface";
-import useAuthApi from "@/lib/axiosClientAuthApi";
+import { Card } from "@/interfaces/card.interface";
+import useAuthApi from "@/lib/useApiClientAuth";
 import { REWARDS_CARD_GETALL } from "@/services";
 import { useSession } from "next-auth/react";
-import { useCards } from "@/utils/Cards/useCards";
-import { useCardDelete } from "@/utils/Cards/useCardDelete";
+import { useCards } from "@/utils-client/Cards/useCards";
+import { useCardDelete } from "@/utils-client/Cards/useCardDelete";
 import { useState } from "react";
-import { useCardRestore } from "@/utils/Cards/useCardRestore";
-import { useCardPost } from "@/utils/Cards/useCardPost";
+import { useCardRestore } from "@/utils-client/Cards/useCardRestore";
+import { useCardPost } from "@/utils-client/Cards/useCardPost";
 
 export default function CardsPage() {
     const { data: session, status } = useSession();

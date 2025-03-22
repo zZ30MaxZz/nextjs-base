@@ -1,5 +1,5 @@
 "use client"
-import { login } from "@/lib/actions"
+import { loginNextAuth } from "@/lib/loginNextAuth"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -13,7 +13,7 @@ export default function LoginPage() {
         const formData = new FormData(e.currentTarget)
 
         try {
-            const result = await login(
+            const result = await loginNextAuth(
                 formData.get("username") as string,
                 formData.get("password") as string
             )

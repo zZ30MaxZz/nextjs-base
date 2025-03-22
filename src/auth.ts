@@ -75,8 +75,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const BUFFER_TIME = token.exp - (3 * 60 * 1000);
 
             if (Date.now() < BUFFER_TIME) {
-                console.log("Token is still valid, generated at:", new Date(token.iat).toISOString())
-                console.log("Expires at:", new Date(BUFFER_TIME).toISOString(), '- GMT');
+                // console.log("Token is still valid, generated at:", new Date(token.iat).toISOString())
+                // console.log("Expires at:", new Date(BUFFER_TIME).toISOString(), '- GMT');
 
                 return token;
             }
@@ -108,7 +108,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 ...session,
                 user: {
                     ...session.user,
-                    email: session.user?.email ?? "", // Asegura que email no sea undefined
+                    email: session.user?.email ?? "", // Asegurar que email no sea undefined
                 },
                 accessToken: token.accessToken ?? "",
                 refreshToken: token.refreshToken ?? "",

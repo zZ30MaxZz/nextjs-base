@@ -5,7 +5,7 @@ import { Wrapper } from "@/interfaces/wrapper.interface";
 
 const NEXT_PUBLIC_BASE_PUBLIC_URL = process.env.NEXT_PUBLIC_BASE_PUBLIC_URL || '';
 
-export default async function loginHandler(request: RequestRefreshToken) {
+export default async function refreshTokenHandler(request: RequestRefreshToken) {
     try {
         const url = `${NEXT_PUBLIC_BASE_PUBLIC_URL}${REWARDS_REFRESH}`;
 

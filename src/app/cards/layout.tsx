@@ -1,12 +1,12 @@
 import 'server-only'
 
 import { REWARDS_CARD_GETALL } from "@/services";
-import { Card } from "@/utils/interface/card.interface";
-import { apiServer } from "@/utils/server/apiServer";
+import { Card } from "@/interfaces/card.interface";
+import { getCardsServer } from "@/utils-server/getCardsServer";
 import { FC, PropsWithChildren } from "react";
 
 const Layout: FC<PropsWithChildren> = async ({ children }) => {
-    const response = await apiServer(REWARDS_CARD_GETALL);
+    const response = await getCardsServer(REWARDS_CARD_GETALL);
     const cards = response?.code === 200 ? response.data as Card[] : [];
 
     if (response?.code !== 200) {
